@@ -44,4 +44,4 @@ const RecipeModal = ({recipeId, onClose}: Props) => {
     );
 };
 
-export default RecipeModal;
+export default RecipeModal; 
