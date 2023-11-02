@@ -4,6 +4,7 @@ import * as api from "./api";
 import { Recipe } from "./types";
 import RecipeCard from "./components/RecipeCard";
 import RecipeModal from "./components/RecipeModal";
+import { AiOutlineSearch } from "react-icons/ai";
 
 type Tabs = "search" | "favourites";
 
@@ -76,10 +77,26 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="app-container">
+      <div className="header">
+        <img src="/hero-image.png" alt="hero image" />
+        <div className="title">Recipe App</div>
+      </div>
       <div className="tabs">
-        <h1 onClick={() => setSelectedTab("search")}> Recipe Search</h1>
-        <h1 onClick={() => setSelectedTab("favourites")}> Favourites</h1>
+        <h1
+          className={selectedTab === "search" ? "tab-active" : ""}
+          onClick={() => setSelectedTab("search")}
+        >
+          {" "}
+          Recipe Search
+        </h1>
+        <h1
+          className={selectedTab === "favourites" ? "tab-active" : ""}
+          onClick={() => setSelectedTab("favourites")}
+        >
+          {" "}
+          Favourites
+        </h1>
       </div>
 
       {selectedTab === "search" && (
@@ -92,51 +109,57 @@ const App = () => {
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
             ></input>
-            <button type="submit">Submit</button>
+            <button type="submit">
+              <AiOutlineSearch size={40} />
+            </button>
           </form>
 
-          {Array.isArray(recipes) ? (
-            recipes.map((recipe) => {
-              const isFavourite = favouriteRecipes.some(
-                (favRecipe) => recipe.id === favRecipe.id
-              );
+          <div className="recipe-grid">
+            {Array.isArray(recipes) ? (
+              recipes.map((recipe) => {
+                const isFavourite = favouriteRecipes.some(
+                  (favRecipe) => recipe.id === favRecipe.id
+                );
 
-              return (
-                <RecipeCard
-                  recipe={recipe}
-                  onClick={() => setSelectedRecipe(recipe)}
-                  onFavouriteButtonClick={
-                    isFavourite ? removeFavouriteRecipe : addFavouriteRecipe
-                  }
-                  isFavourite={isFavourite}
-                />
-              );
-            })
-          ) : (
-            <div>
-              <p>
-                This website uses Free Spoonacular API and the daily points limit of 150 has been
-                reached. Check the{" "}
-                <a
-                  style={{ color: "green", cursor: "pointer" }}
-                  target="_blank"
-                  href="https://spoonacular.com/food-api/pricing"
-                >
-                  Spoonacular API
-                </a>{" "}
-                for more details
-              </p>
-            </div>
+                return (
+                  <RecipeCard
+                    recipe={recipe}
+                    onClick={() => setSelectedRecipe(recipe)}
+                    onFavouriteButtonClick={
+                      isFavourite ? removeFavouriteRecipe : addFavouriteRecipe
+                    }
+                    isFavourite={isFavourite}
+                  />
+                );
+              })
+            ) : (
+              <div>
+                <p>
+                  This website uses Free Spoonacular API and the daily points
+                  limit of 150 has been reached. Check the{" "}
+                  <a
+                    style={{ color: "green", cursor: "pointer" }}
+                    target="_blank"
+                    href="https://spoonacular.com/food-api/pricing"
+                  >
+                    Spoonacular API
+                  </a>{" "}
+                  for more details
+                </p>
+              </div>
+            )}
+          </div>
+
+          {Array.isArray(recipes) && recipes.length > 0 && (
+            <button className="view-more-button" onClick={handleViewMoreClick}>
+              View More
+            </button>
           )}
-
-          <button className="view-more-button" onClick={handleViewMoreClick}>
-            View More
-          </button>
         </>
       )}
 
       {selectedTab === "favourites" && (
-        <div>
+        <div className="recipe-grid">
           {Array.isArray(favouriteRecipes) ? (
             favouriteRecipes.map((recipe) => (
               <RecipeCard
@@ -149,8 +172,8 @@ const App = () => {
           ) : (
             <div>
               <p>
-                This website uses Free Spoonacular API and the daily points limit of 150 has been
-                reached. Check the{" "}
+                This website uses Free Spoonacular API and the daily points
+                limit of 150 has been reached. Check the{" "}
                 <a
                   style={{ color: "green", cursor: "pointer" }}
                   target="_blank"
