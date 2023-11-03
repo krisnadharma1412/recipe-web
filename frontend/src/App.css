@@ -153,3 +153,9 @@ button {
   align-items: center;
   gap: 0.5em;
 }
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  font-size: 1.5em;
+}

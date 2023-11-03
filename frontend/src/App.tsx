@@ -138,7 +138,7 @@ const App = () => {
                 })
               ) : (
                 <div>
-                  <p>No recipes found</p>
+                  <p className="error-message">No recipes found, search other keyword</p>
                 </div>
               )
             ) : (
