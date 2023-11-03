@@ -119,7 +119,7 @@ const App = () => {
 
           <div className="recipe-grid">
             {Array.isArray(recipes) ? (
-              searchFound.includes('found') ? (
+              searchFound === "found" ? (
                 recipes.map((recipe) => {
                   const isFavourite = favouriteRecipes.some(
                     (favRecipe) => recipe.id === favRecipe.id
