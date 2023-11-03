@@ -117,22 +117,28 @@ const App = () => {
 
           <div className="recipe-grid">
             {Array.isArray(recipes) ? (
-              recipes.map((recipe) => {
-                const isFavourite = favouriteRecipes.some(
-                  (favRecipe) => recipe.id === favRecipe.id
-                );
+              recipes.length > 0 ? (
+                recipes.map((recipe) => {
+                  const isFavourite = favouriteRecipes.some(
+                    (favRecipe) => recipe.id === favRecipe.id
+                  );
 
-                return (
-                  <RecipeCard
-                    recipe={recipe}
-                    onClick={() => setSelectedRecipe(recipe)}
-                    onFavouriteButtonClick={
-                      isFavourite ? removeFavouriteRecipe : addFavouriteRecipe
-                    }
-                    isFavourite={isFavourite}
-                  />
-                );
-              })
+                  return (
+                    <RecipeCard
+                      recipe={recipe}
+                      onClick={() => setSelectedRecipe(recipe)}
+                      onFavouriteButtonClick={
+                        isFavourite ? removeFavouriteRecipe : addFavouriteRecipe
+                      }
+                      isFavourite={isFavourite}
+                    />
+                  );
+                })
+              ) : (
+                <div>
+                  <p>No recipes found</p>
+                </div>
+              )
             ) : (
               <div>
                 <p>
