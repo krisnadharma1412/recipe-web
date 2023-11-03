@@ -17,6 +17,7 @@ const App = () => {
   const [selectedTab, setSelectedTab] = useState<Tabs>("search");
   const [favouriteRecipes, setFavouriteRecipes] = useState<Recipe[]>([]);
   const pageNumber = useRef(1);
+  const [searchFound, setSearchFound] = useState<string>("found");
 
   useEffect(() => {
     const fetchFavouriteRecipes = async () => {
@@ -39,6 +40,7 @@ const App = () => {
       const recipes = await api.searchRecipes(searchTerm, 1);
       console.log("Recipes:", recipes.results);
       setRecipes(recipes.results);
+      setSearchFound(recipes.results.length === 0 ? 'not found' : 'found');
       pageNumber.current = 1;
     } catch (e) {
       console.log(e);
@@ -117,7 +119,7 @@ const App = () => {
 
           <div className="recipe-grid">
             {Array.isArray(recipes) ? (
-              recipes.length > 0 ? (
+              searchFound.includes('found') ? (
                 recipes.map((recipe) => {
                   const isFavourite = favouriteRecipes.some(
                     (favRecipe) => recipe.id === favRecipe.id
