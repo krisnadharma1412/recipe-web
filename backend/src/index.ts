@@ -10,10 +10,6 @@ const prismaClient = new PrismaClient()
 app.use(express.json());
 app.use(cors());
 
-app.use("/", (req, res) => {
-    res.send("Server is running");
-})
-
 app.listen(5000, () => {
     console.log("server started on localhost:5000");
 });
