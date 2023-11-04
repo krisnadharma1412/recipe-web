@@ -1,6 +1,7 @@
 # recipe-app
 
 Recipe app is an application that allows users to view, add, and manage their favorite recipes. 
+
 Created with:
 - React as the frontend
 - Node.js as the backend
