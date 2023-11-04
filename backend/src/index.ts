@@ -10,6 +10,14 @@ const prismaClient = new PrismaClient()
 app.use(express.json());
 app.use(cors());
 
+app.use("/", (req, res) => {
+    res.send("Server is running");
+})
+
+app.listen(5000, () => {
+    console.log("server started on localhost:5000");
+});
+
 app.get("/api/recipes/search", async (req, res) => {
     // GET http://localhost/api/recipes/search?searchTerm=burger&page=1
     const searchTerm = req.query.searchTerm as string;
@@ -72,6 +80,3 @@ app.delete("/api/recipes/favourite", async (req, res) =>{
     }
 })
 
-app.listen(5000, () => {
-    console.log("server running on localhost:5000");
-});
