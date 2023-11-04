@@ -10,4 +10,4 @@ Created with:
 - Prisma 
 - Express
 
-Demo: https://krisna-recipe.vercel.app/
+Demo: <a href="https://krisna-recipe.vercel.app/" target="_blank">krisna-recipe.vercel.app</a>
