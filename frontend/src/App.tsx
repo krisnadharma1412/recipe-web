@@ -40,7 +40,7 @@ const App = () => {
       const recipes = await api.searchRecipes(searchTerm, 1);
       console.log("Recipes:", recipes.results);
       setRecipes(recipes.results);
-      setSearchFound(recipes.results.length === 0 ? 'not found' : 'found');
+      setSearchFound(recipes.results.length === 0 ? "not found" : "found");
       pageNumber.current = 1;
     } catch (e) {
       console.log(e);
@@ -138,7 +138,9 @@ const App = () => {
                 })
               ) : (
                 <div>
-                  <p className="error-message">No recipes found, search other keyword</p>
+                  <p className="error-message">
+                    No recipes found, search other keyword
+                  </p>
                 </div>
               )
             ) : (
