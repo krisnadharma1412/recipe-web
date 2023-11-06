@@ -5,6 +5,7 @@ import { Recipe } from "./types";
 import RecipeCard from "./components/RecipeCard";
 import RecipeModal from "./components/RecipeModal";
 import { AiOutlineSearch } from "react-icons/ai";
+import Footer from "./components/Footer";
 
 type Tabs = "search" | "favourites";
 
@@ -205,6 +206,7 @@ const App = () => {
           onClose={() => setSelectedRecipe(undefined)}
         />
       ) : null}
+      <Footer />
     </div>
   );
 };
